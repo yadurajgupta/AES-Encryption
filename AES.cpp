@@ -28,7 +28,6 @@ void showarrstr(vector<vector<int>> &c)
 {
   for(int i=0;i<16;i++)
   cout<<(char)c[i%4][i/4];
-  cout<<endl;
 }
 void showstr(vector<vector<vector<int>>> &vec)
 {
@@ -50,7 +49,7 @@ void aes_enc(vector<vector<int>> &pt,vector<vector<int>> &key)
     AddRoundKey(pt,key);
   }
 }
-void aes_dec(vector<vector<int>> &pt,vector<vector<int>> &key)
+void aes_dec(vector<vector<int>> &pt,vector<vector<int>> key)
 {
   AddRoundKey(pt,key);
   for(int i=9;i>=0;i--)
@@ -62,18 +61,33 @@ void aes_dec(vector<vector<int>> &pt,vector<vector<int>> &key)
     AddRoundKey(pt,key);
   }
 }
+vector<vector<int>> enc(vector<vector<vector<int>>> &pt,string ky)
+{
+  vector<vector<int>> key;
+  for(int i=0;i<pt.size();i++)
+  {
+    key=strvec(ky,0);
+    aes_enc(pt[i],key);
+  }
+  return key;
+}
+void dec(vector<vector<vector<int>>> &ct,vector<vector<int>> &key)
+{
+  for(int i=0;i<ct.size();i++)
+  {
+    aes_dec(ct[i],key);
+  }
+}
 int main()
 {
-  string S1="abcdefghijklmnop";
+  string S1="abcdefghijklmnopqwertyuiopasdfghjklzxcvbnm";
   string ky="128BitKEYATLEAST";
-  vector<vector<int>> pt=strvec(S1,0);
-  vector<vector<int>> key=strvec(ky,0);
-  cout<<endl;
-
-  showarrstr(pt);
-  aes_enc(pt,key);
-  showarrstr(pt);
-  aes_dec(pt,key);
-  showarrstr(pt);
-  cout<<endl;
+  assert(ky.size()==16) ;
+  vector<vector<vector<int>>> pt=make_arr(S1);
+  vector<vector<int>> key;
+  showstr(pt);
+  key=enc(pt,ky);
+  showstr(pt);
+  dec(pt,key);
+  showstr(pt);
 }
