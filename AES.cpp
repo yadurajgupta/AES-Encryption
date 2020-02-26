@@ -61,15 +61,15 @@ void aes_dec(vector<vector<int>> &pt,vector<vector<int>> key)
     AddRoundKey(pt,key);
   }
 }
-vector<vector<int>> enc(vector<vector<vector<int>>> &pt,string ky)
+void enc(vector<vector<vector<int>>> &pt,vector<vector<int>> &key)
 {
-  vector<vector<int>> key;
+  vector<vector<int>> tempkey(key);
   for(int i=0;i<pt.size();i++)
   {
-    key=strvec(ky,0);
-    aes_enc(pt[i],key);
+    tempkey=vector<vector<int>>(key);
+    aes_enc(pt[i],tempkey);
   }
-  return key;
+  key=tempkey;
 }
 void dec(vector<vector<vector<int>>> &ct,vector<vector<int>> &key)
 {
@@ -84,9 +84,9 @@ int main()
   string ky="128BitKEYATLEAST";
   assert(ky.size()==16) ;
   vector<vector<vector<int>>> pt=make_arr(S1);
-  vector<vector<int>> key;
+  vector<vector<int>> key=strvec(ky,0);
   showstr(pt);
-  key=enc(pt,ky);
+  enc(pt,key);
   showstr(pt);
   dec(pt,key);
   showstr(pt);
