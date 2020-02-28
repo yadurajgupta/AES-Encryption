@@ -1,6 +1,5 @@
 #include<iostream>
 #include<time.h>
-#include"bits/stdc++.h"
 #include "S_Box.cpp"
 using namespace std;
 vector<vector<int>> rcon=
@@ -120,22 +119,3 @@ vector<vector<int>> befkey(vector<vector<int>> &key,int round)
   setkeyrev(key,subkey);
   return key;
 }
-
-// int main()
-// {
-//   string ky="128BitKEYATLEAST";
-//
-//   vector<vector<int>> key(vector<vector<int>>(4,vector<int>(4,0)));
-//   for(int i=0;i<4;i++)
-//   {
-//     for(int j=0;j<4;j++)
-//     key[i][j]=i+j;
-//   }
-//   showarr2d(key);
-//   key=nextkey(key,0);
-//   key=nextkey(key,1);
-//   showarr2d(key);
-//   key=befkey(key,1);
-//   key=befkey(key,0);
-//   showarr2d(key);
-// }

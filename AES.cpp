@@ -1,7 +1,8 @@
 #include<iostream>
 #include<time.h>
-#include"bits/stdc++.h"
-// #include "S_Box.cpp"
+#include <vector>
+#include <set>
+#include <assert.h>
 #include "mix_column.cpp"
 #include "Shift_Rows.cpp"
 #include "key_expansion.cpp"
@@ -27,14 +28,16 @@ vector<vector<vector<int>>> make_arr(string &S)
 void showarrstr(vector<vector<int>> &c)
 {
   for(int i=0;i<16;i++)
-  cout<<(char)c[i%4][i/4];
+  cout<<hex<<c[i%4][i/4]<<" ";
 }
 void showstr(vector<vector<vector<int>>> &vec)
 {
+  string S1="'";
   for(int i=0;i<vec.size();i++)
   {
     showarrstr(vec[i]);
   }
+  cout<<S1;
   cout<<endl;
 }
 void aes_enc(vector<vector<int>> &pt,vector<vector<int>> &key)
@@ -78,16 +81,42 @@ void dec(vector<vector<vector<int>>> &ct,vector<vector<int>> &key)
     aes_dec(ct[i],key);
   }
 }
+string stringarr1(vector<vector<int>> &vec)
+{
+  string S1;
+  for(int j=0;j<4;j++)
+  {
+    for(int i=0;i<4;i++)
+    {
+      S1+=(char)vec[i][j];
+    }
+  }
+  return S1;
+}
+string stringarr(vector<vector<vector<int>>> &vec)
+{
+  string S;
+  for(int i=0;i<vec.size();i++)
+  S+=stringarr1(vec[i]);
+  return S;
+}
 int main()
 {
-  string S1="abcdefghijklmnopqwertyuiopasdfghjklzxcvbnm";
+  cout<<"\n\nAES ENCRYPTION AND DECRYPTION\n\n";
+  string S1="'INPUT TEXT TEST AES ENCRYPTION'";
+  cout<<"INPUT :"<<S1<<endl;
   string ky="128BitKEYATLEAST";
-  assert(ky.size()==16) ;
+  assert(ky.size()>=16);
   vector<vector<vector<int>>> pt=make_arr(S1);
   vector<vector<int>> key=strvec(ky,0);
+  cout<<"\nPLAINTEXT(HEX) :";
   showstr(pt);
   enc(pt,key);
+  cout<<"\nENCRYPTED(HEX) :";
   showstr(pt);
   dec(pt,key);
+  cout<<"\nDECRYPTED(HEX) :";
   showstr(pt);
+  string decrypted=stringarr(pt);
+  cout<<"\nDECRYPTED(char) "<<decrypted<<endl;
 }

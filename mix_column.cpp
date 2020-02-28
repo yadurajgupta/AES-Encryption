@@ -1,8 +1,6 @@
 #include<iostream>
 #include<time.h>
-#include"bits/stdc++.h"
 #include "finite_field.cpp"
-// #include "S_Box.cpp"
 using namespace std;
 // vector<vector<int>> ms={ {2,3,1,1},
 //                          {1,2,3,1},

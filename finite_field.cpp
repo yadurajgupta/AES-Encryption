@@ -1,7 +1,9 @@
 #include<iostream>
 #include<time.h>
-#include"bits/stdc++.h"
+#include <vector>
+// #include"bits/stdc++.h"
 using namespace std;
+//FOR MIS COLUMNS GF(256) MULTIPLICATION AND INVERSE
 typedef struct polynomial
 {
   int val;
@@ -26,14 +28,8 @@ poly givepoly(int N)
   p.coef.erase(p.coef.begin()+last+1,p.coef.end());
   return p;
 }
+//IRREDUSABLE POLYNOMIAL FOR AES x^8 + x^4 + x^3 + x + 1
 poly ired=givepoly(283);
-void showpoly(poly *p)
-{
-  cout<<p->val<<":";
-  for(int i=p->coef.size()-1;i>=0;i--)
-  cout<<p->coef[i]<<" ";
-  cout<<endl;
-}
 void fixpoly(poly *m)
 {
   while(m->coef.size()>0 && m->coef[m->coef.size()-1]==0)
@@ -50,6 +46,8 @@ poly copyof(poly *p)
   poly p1=givepoly(p->val);
   return p1;
 }
+
+//GIVES REMAINDER AFTER DIVISION
 poly divrem(poly a,poly b)
 {
   poly q;
@@ -72,6 +70,7 @@ poly divrem(poly a,poly b)
   fixpoly(&q);
   return r;
 }
+//MULTIPLIES POLYNOMIALS
 poly mult(poly a,poly b)
 {
   if(a.val==0 || b.val==0)

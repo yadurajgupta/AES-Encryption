@@ -1,6 +1,7 @@
 #include<iostream>
 #include<time.h>
-#include"bits/stdc++.h"
+// #include"bits/stdc++.h"
+#include <vector>
 using namespace std;
 void shift_rows(vector<vector<int>> &A,int r)
 {

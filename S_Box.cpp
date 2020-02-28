@@ -1,6 +1,6 @@
 #include<iostream>
 #include<time.h>
-#include"bits/stdc++.h"
+// #include"bits/stdc++.h"
 using namespace std;
 
 void showarr2d(vector<vector<int>> &A)
