@@ -1,6 +1,5 @@
 #include<iostream>
 #include<time.h>
-// #include"bits/stdc++.h"
 #include <vector>
 using namespace std;
 //SHIFTS ROWS BY R
