@@ -7,6 +7,7 @@
 #include "Shift_Rows.cpp"
 #include "key_expansion.cpp"
 using namespace std;
+string quote=" ' ";
 vector<vector<int>> strvec(string &S,int i)
 {
   vector<vector<int>> vec(4,vector<int>(4,(int)'\0'));
@@ -28,16 +29,16 @@ vector<vector<vector<int>>> make_arr(string &S)
 void showarrstr(vector<vector<int>> &c)
 {
   for(int i=0;i<16;i++)
-  cout<<hex<<c[i%4][i/4]<<" ";
+  cout<<hex<<c[i%4][i/4]<<(i<15?" ":"");
 }
 void showstr(vector<vector<vector<int>>> &vec)
 {
-  string S1="'";
+  cout<<quote;
   for(int i=0;i<vec.size();i++)
   {
     showarrstr(vec[i]);
   }
-  cout<<S1;
+  cout<<quote;
   cout<<endl;
 }
 void aes_enc(vector<vector<int>> &pt,vector<vector<int>> &key)
@@ -103,8 +104,8 @@ string stringarr(vector<vector<vector<int>>> &vec)
 int main()
 {
   cout<<"\n\nAES ENCRYPTION AND DECRYPTION\n\n";
-  string S1="'INPUT TEXT TEST AES ENCRYPTION'";
-  cout<<"INPUT :"<<S1<<endl;
+  string S1="INPUT TEXT TEST AES ENCRYPTION";
+  cout<<"INPUT :"<<quote<<S1<<quote<<endl;
   string ky="128BitKEYATLEAST";
   assert(ky.size()>=16);
   vector<vector<vector<int>>> pt=make_arr(S1);
@@ -118,5 +119,5 @@ int main()
   cout<<"\nDECRYPTED(HEX) :";
   showstr(pt);
   string decrypted=stringarr(pt);
-  cout<<"\nDECRYPTED(char) "<<decrypted<<endl;
+  cout<<"\nDECRYPTED(char) :"<<quote<<decrypted<<quote<<endl;
 }
