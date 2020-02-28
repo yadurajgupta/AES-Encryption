@@ -1,6 +1,5 @@
 #include<iostream>
 #include<time.h>
-// #include"bits/stdc++.h"
 using namespace std;
 
 void showarr2d(vector<vector<int>> &A)
@@ -65,6 +64,7 @@ pair<int,int> giveindex(char c)
   }
   return {i,j};
 }
+//MAIN S BOX FUNCTION
 void sbox(vector<vector<int>> &vec,vector<vector<int>> &state)
 {
   for(int i=0;i<vec.size();i++)

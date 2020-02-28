@@ -2,6 +2,9 @@
 #include<time.h>
 #include "S_Box.cpp"
 using namespace std;
+/*
+ * NESSARY FUNCTION FOR KEY EXPANTION
+*/
 vector<vector<int>> rcon=
 {
   {1,2,4,8,16,32,64,128,27,54},
