@@ -3,6 +3,7 @@
 // #include"bits/stdc++.h"
 #include <vector>
 using namespace std;
+//SHIFTS ROWS BY R
 void shift_rows(vector<vector<int>> &A,int r)
 {
   int i=abs(r);
